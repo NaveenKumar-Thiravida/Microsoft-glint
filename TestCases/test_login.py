@@ -3,12 +3,13 @@ import time
 import pytest
 from selenium import webdriver
 from PageObjects.LoginPage import LoginPage
+from Utilities.readProperties import ReadConfig
 
 class Test_001_Login:
-    baseURL = "https://app.vgqa.glint.cloud-dev.microsoft/session/auth"
-    Email_address = "qatester@glintinc.com"
-    Client_id = "qa20191108"
-    Password = "Dem0@pass2"
+    baseURL = ReadConfig.getApplicationURL()
+    Email_address = ReadConfig.getEmailAddress()
+    Client_id = ReadConfig.getClientID()
+    Password = ReadConfig.getPassword()
 
     def test_LandingPageTitle(self,setup):
         self.driver = setup
@@ -20,6 +21,7 @@ class Test_001_Login:
 
         if actual_title=="Authenticate - Viva Glint":
             assert True
+            self.driver.close()
         else:
             self.driver.save_screenshot("C:/Users/admin/PycharmProject/pythonProject/Microsoft-glint/Screenshots"+"test_LandingPageTitle.png")
             self.driver.close()
@@ -44,6 +46,7 @@ class Test_001_Login:
 
         if actual_title=="Viva Glint":
             assert True
+            self.driver.close()
         else:
             self.driver.save_screenshot(
                 "C:/Users/admin/PycharmProject/pythonProject/Microsoft-glint/Screenshots" + "test_login.png")
