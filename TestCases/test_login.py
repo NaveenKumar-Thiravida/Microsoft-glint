@@ -1,5 +1,5 @@
 import time
-import allure
+
 from allure_commons.types import AttachmentType
 
 from PageObjects.LoginPage import LoginPage
@@ -14,7 +14,7 @@ class Test_001_Login:
 
     logger=LogGeneration.loggen()
 
-    @allure.severity(allure.severity_level.MINOR)
+
     def test_LandingPageTitle(self,setup):
 
 
@@ -39,7 +39,7 @@ class Test_001_Login:
             self.logger.error("********** Landing Page Title Test Is Failed **********")
             assert False
 
-    @allure.severity(allure.severity_level.BLOCKER)
+
     def test_login(self,setup):
 
 
@@ -65,10 +65,10 @@ class Test_001_Login:
             self.logger.info("********** Login Test Is Passed **********")
             self.driver.close()
         else:
-            allure.attach(self.driver.get_screenshot_as_png(),name="test login screenshot",attachment_type=AttachmentType.PNG)
-            ##self.driver.save_screenshot(
-                ##"C://Users//admin//PycharmProject//pythonProject//Microsoft-glint//Screenshots" + "test_login.png")##
-            ##self.logger.error("********** Login Test Is Failed **********")##
+
+            self.driver.save_screenshot(
+                "C://Users//admin//PycharmProject//pythonProject//Microsoft-glint//Screenshots" + "test_login.png")
+            self.logger.error("********** Login Test Is Failed **********")
             assert False
             self.driver.close()
 
