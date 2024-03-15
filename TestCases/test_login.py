@@ -60,7 +60,7 @@ class Test_001_Login:
         time.sleep(10)
         actual_title=self.driver.title
 
-        if actual_title=="Viva Glit":
+        if actual_title=="Viva Glint":
             assert True
             self.logger.info("********** Login Test Is Passed **********")
             self.driver.close()
