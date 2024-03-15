@@ -1,4 +1,6 @@
 import time
+import allure
+from allure_commons.types import AttachmentType
 
 from PageObjects.LoginPage import LoginPage
 from Utilities.readProperties import ReadConfig
@@ -12,7 +14,9 @@ class Test_001_Login:
 
     logger=LogGeneration.loggen()
 
+    @allure.severity(allure.severity_level.MINOR)
     def test_LandingPageTitle(self,setup):
+
 
         self.logger.info("********** Test_001_Login **********")
         self.logger.info("********** Verifying Landing page Title **********")
@@ -35,7 +39,10 @@ class Test_001_Login:
             self.logger.error("********** Landing Page Title Test Is Failed **********")
             assert False
 
+    @allure.severity(allure.severity_level.BLOCKER)
     def test_login(self,setup):
+
+
         self.logger.info("********** Verifying Login Test **********")
         self.driver= setup
         time.sleep(10)
@@ -53,14 +60,15 @@ class Test_001_Login:
         time.sleep(10)
         actual_title=self.driver.title
 
-        if actual_title=="Viva Glint":
+        if actual_title=="Viva Glit":
             assert True
             self.logger.info("********** Login Test Is Passed **********")
             self.driver.close()
         else:
-            self.driver.save_screenshot(
-                "C://Users//admin//PycharmProject//pythonProject//Microsoft-glint//Screenshots" + "test_login.png")
-            self.logger.error("********** Login Test Is Failed **********")
-            self.driver.close()
+            allure.attach(self.driver.get_screenshot_as_png(),name="test login screenshot",attachment_type=AttachmentType.PNG)
+            ##self.driver.save_screenshot(
+                ##"C://Users//admin//PycharmProject//pythonProject//Microsoft-glint//Screenshots" + "test_login.png")##
+            ##self.logger.error("********** Login Test Is Failed **********")##
             assert False
+            self.driver.close()
 
