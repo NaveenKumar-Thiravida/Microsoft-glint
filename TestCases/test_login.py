@@ -1,10 +1,10 @@
 import time
-
 from PageObjects.LoginPage import LoginPage
 from Utilities.readProperties import ReadConfig
 from Utilities.CustomLogger import LogGeneration
 
 class Test_001_Login:
+
     url = ReadConfig.getApplicationURL()
     email_address = ReadConfig.getEmailAddress()
     client_id = ReadConfig.getClientID()
